@@ -1,7 +1,10 @@
 # national-rail-darwin
 
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-[![Test Status](https://travis-ci.org/mattsalt/national-rail-darwin.svg?branch=master)](https://travis-ci.org/mattsalt/national-rail-darwin)
+
+# Important
+
+This is forked from [mattsalt/national-rail-darwin](https://github.com/mattsalt/national-rail-darwin) since the original doesn't work very well on web browsers without polyfilling a lot of nodejs functionality. Below is the original README content from mattsalt's version.
 
 ### Introduction
 

@@ -1,6 +1,3 @@
-var request = require('request')
-var Bluebird = require('bluebird')
-
 var requestBuilder = require('./requestBuilder.js')
 var parser = require('./parsers.js')
 
@@ -19,40 +16,17 @@ Darwin.prototype.getBaseUrl = function () {
 
 Darwin.prototype.thenablePOST = function (xml) {
   var xmlWithToken = xml.replace('$$TOKEN$$', this.key)
-  return new Bluebird(function (resolve, reject) {
-    request.post({
-      url: baseUrl,
-      headers: {
-        'content-type': 'text/xml'
-      },
-      body: xmlWithToken
-    }, function (err, response, body) {
-      if (err) {
-        console.log(err)
-        reject(err)
-      } else if (response.statusCode > 300) {
-        reject(response)
-      } else {
-        resolve(body)
-      }
-    })
-  })
+  return fetch(baseUrl, {
+    method: 'POST',
+    headers: {
+      'content-type': 'text/xml',
+    },
+    body: xmlWithToken,
+  }).then(response => response.text());
 }
 
 function thenableGET (url) {
-  return new Bluebird(function (resolve, reject) {
-    request.get({
-      url: url
-    }, function (err, response, body) {
-      if (err) {
-        reject(err)
-      } else if (response.statusCode > 300) {
-        reject(response)
-      } else {
-        resolve(body)
-      }
-    })
-  })
+  return fetch(url).then(response => response.text());
 }
 
 Darwin.prototype.getDepartureBoard = function (station, options, callback) {
