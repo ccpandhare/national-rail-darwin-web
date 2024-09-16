@@ -20,6 +20,7 @@ Darwin.prototype.thenablePOST = function (xml) {
     method: 'POST',
     headers: {
       'content-type': 'text/xml',
+      'x-requested-with': 'XMLHttpRequest',
     },
     body: xmlWithToken,
   }).then(response => response.text());
